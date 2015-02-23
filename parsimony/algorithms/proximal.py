@@ -459,13 +459,9 @@ class CONESTA(bases.ExplicitAlgorithm,
             self.info_set(Info.converged, False)
         if self.info_requested(Info.mu):
             mu_ = []
-        do_loop = True
-        if gap < consts.TOLERANCE:
-             self.num_iter = 0
-             do_loop = False
 
         i = 0  # Iteration counter.
-        while do_loop:
+        while True:
             converged = False
 
             # Current precision.
@@ -578,8 +574,7 @@ class StaticCONESTA(bases.ExplicitAlgorithm,
                      Info.continuations,
                      Info.time,
                      Info.fvalue,
-                     Info.mu,
-                     Info.gap]
+                     Info.mu]
 
     def __init__(self, mu_min=consts.TOLERANCE, tau=0.5,
                  info=[], eps=consts.TOLERANCE, max_iter=10000, min_iter=1):
